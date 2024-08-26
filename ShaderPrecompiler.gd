@@ -33,8 +33,8 @@ func _recursive_get_materials(node: Node) -> void:
 		if child is MeshInstance3D:
 			var mesh: MeshInstance3D = child as MeshInstance3D
 			
-			for i in range(mesh.get_surface_material_count()):
-				var mat = mesh.get_surface_material(i)
+			for i in range(mesh.get_surface_override_material_count()):
+				var mat = mesh.get_surface_override_material(i)
 				if mat == null:
 					mat = mesh.mesh.surface_get_material(i)
 					
@@ -50,7 +50,7 @@ func _add_material(material: Material) -> void:
 	var quad: QuadMesh = QuadMesh.new()
 	var newMesh: MeshInstance3D = MeshInstance3D.new()
 	newMesh.mesh = quad
-	newMesh.set_surface_material(0, material)
+	newMesh.set_surface_override_material(0, material)
 	
 	add_child(newMesh)
 	newMesh.set_owner(self)
